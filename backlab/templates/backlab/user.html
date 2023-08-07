@@ -1,0 +1,98 @@
+{% extends 'backlab/navbar.html' %}
+
+{% block allthing %}
+
+<div id="app">
+
+  <section class="is-title-bar">
+    <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+      <ul>
+        <li>Admin</li>
+        <li>Dashboard</li>
+      </ul>
+    </div>
+  </section>
+
+
+
+  <section class="section main-section">
+    <div class="card mb-6">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-ballot"></i></span>
+          Utilisateurs
+        </p>
+      </header>
+      <div class="card-content">          
+        <div class="field">
+          <form>
+            {% csrf_token %}
+            <div class="grid grid-cols-3 gap-6 lg:grid-cols-2 mb-6">
+
+              <div class="field-body">
+                <div class="field">
+                  <div class="field addons">
+                    <div class="control expanded">
+                      <label class="label">Nom et Prénoms</label>
+                      <input type="hidden" name="user_id" value=""/>
+                      <input class="input" type="text" id="name" placeholder="name" value="" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+            
+              <div class="field-body">
+                <div class="field">
+                  <div class="field addons">
+                    <div class="control expanded">
+                      <label class="label">Adresse mail</label>
+                      <input class="input" type="email"  id="email" placeholder="@mail" name="email" value="" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-body">
+                <div class="control">
+                  <div class="select">
+                    <label class="label">Profil</label>
+                    <select class="" name="profil" id="profil" required>
+                      <option selected="true" disabled="true">Profil</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-body">
+                <div class="field">
+                  <div class="field addons">
+                    <div class="control expanded">
+                      <label class="label">Mot de passe</label>
+                      <input class="input" type="text"  id="password" placeholder="mot de passe" name="password" value="{{password}}" readonly>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            
+            <div class="field grouped">
+              <div class="control">
+                  <button type="button"  onclick=""  data-target="sample-modal" class="button green">
+                  Enregistrer
+                  </button>
+              </div>
+              <div class="control">
+                  <a href="index.php?controller=control_fiche_de_paye" class="button red">
+                      Annuler
+                  </a> 
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+  </section>
+
+
+{% endblock allthing %}

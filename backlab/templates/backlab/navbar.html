@@ -1,0 +1,111 @@
+{% extends 'backlab/header.html' %}
+
+{% block content %}
+
+
+<nav id="navbar-main" class="navbar is-fixed-top">
+
+    <div class="navbar-brand is-right">
+      <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
+        <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
+      </a>
+    </div>
+    <div class="navbar-menu" id="navbar-menu">
+      <div class="navbar-end">
+     
+        <div class="navbar-item dropdown has-divider has-user-avatar">
+          <a class="navbar-link">
+            <div class="user-avatar">
+              <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
+            </div>
+            <div class="is-user-name"><span>John Doe</span></div>
+            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+          </a>
+          <div class="navbar-dropdown">
+            <a href="{% url 'profil' %}" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-account"></i></span>
+              <span>Mon Profil</span>
+            </a>
+            <a href="{% url 'setting' %}" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-settings"></i></span>
+              <span>Paramètres</span>
+            </a>
+            <a href="{% url 'message' %}" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-email"></i></span>
+              <span>Messages</span>
+            </a>
+            <hr class="navbar-divider">
+            <a href=" {% url 'logout' %} " class="navbar-item" >
+              <span class="icon"><i class="mdi mdi-logout"></i></span>
+              <span>Déconnexion</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+  
+  <aside class="aside is-placed-left is-expanded">
+    <div class="aside-tools">
+      <div>
+        Lab<b class="font-black">7</b>
+      </div>
+    </div>
+    <div class="menu is-menu-main">
+
+      <p class="menu-label">Tableau de bord</p>
+      <ul class="menu-list">
+        <li class="--set-active-profile-html">
+            <a href="{% url 'user' %}">
+              <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+              <span class="menu-item-label">Utilisateurs</span>
+            </a>
+        </li>
+        <li class="--set-active-profile-html">
+            <a href="{% url 'category' %}">
+              <span class="icon"><i class="mdi mdi-folder"></i></span>
+              <span class="menu-item-label">Catégories</span>
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'listarticle' %}" class="dropdown">
+            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+            <span class="menu-item-label">Articles</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li class="--set-active-forms-html">
+                <a href="{% url 'writearticle' %}">
+                <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                <span class="menu-item-label">Rédiger un article</span>
+                </a>
+            </li>
+            <li class="--set-active-tables-html">
+                <a href="{% url 'listarticle' %}">
+                  <span class="icon"><i class="mdi mdi-table"></i></span>
+                  <span class="menu-item-label">Liste des articles rédigés</span>
+                </a>
+            </li>
+
+            <li class="--set-active-tables-html">
+                <a href="{% url 'votearticle' %}">
+                  <span class="icon"><i class="mdi mdi-checkbox-marked-circle"></i></span>
+                  <span class="menu-item-label">Articles soumis pour vote</span>
+                </a>
+            </li>
+          </ul>
+        </li>  
+        <li>
+            <a href="{% url 'comment' %}">
+              <span class="icon"><i class="mdi mdi-comment"></i></span>
+              <span class="menu-item-label">Commentaires</span>
+            </a>
+          </li>
+      </ul>
+
+    </div>
+  </aside>
+    {% block allthing  %}{% endblock  %}
+
+  {% endblock %}

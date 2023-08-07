@@ -1,0 +1,12 @@
+-generer  mot de passe automatique sur la page d'enregistrement des utilisateurs 
+-changer mot de passe dès première connexion 
+-affichier les liens du nav bar en focntion des profils
+-enregistrer utilisateurs suivant profil
+-enregistrer les articles aec les pièces jointes
+-authentification 
+-gestion des votes
+-gestion des commentaires
+-laisser la page de connexion de django
+-redigriger les utilisateurs non autentfifiés sur page de connexion 
+-envoie des informations par mail dès création de compte 
+-mot de passe oublié

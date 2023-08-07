@@ -21,8 +21,37 @@ urlpatterns = [
 
 
 
-    path('admin/', admin.site.urls),
-    path('dashboard', views.dashboard_view),
+    path('admin/', admin.site.urls , name='admin'),
+    path('dashboard', views.dashboard_view, name='dashbaord'),
+    path('profil', views.profil_view, name='profil'),
+    path('setting', views.setting_view, name='setting'),
+    path('message', views.message_view, name='message'),
+    path('logout', views.logout_view, name='logout'),
+
+    path('user', views.user_view, name='user'),
+    path('listuser', views.user_view, name='listuser'),
+    path('updateuser/<int:id>/', views.user_view, name='updateuser'),
+   
+   
+
+    path('comment', views.comment_view, name='comment'),
+    path('listcomment', views.comment_view, name='listcomment'),
+    path('Deltecomment/<int:id>/', views.comment_view, name='deletecomment'),
+
+    path('category', views.category_view, name='category'),
+    path('listcategory', views.category_view, name='listcategory'),
+    path('Updatecategory/<int:id>/', views.category_view, name='updatecategory'),
+    path('Deletecategory/<int:id>/', views.category_view, name='deletecategory'),
+
+
+    path('writearticle', views.writearticle_view, name='writearticle'),
+    path('listarticle', views.listarticle_view, name='listarticle'),
+    path('votearticle', views.votearticle_view, name='votearticle'),
+    path('readarticle/<int:id>/', views.readarticle_view, name='readarticle'),
+    path('updatearticle/<int:id>/', views.updatearticle_view, name='updatearticle'),
+    path('deletearticle/<int:id>/', views.deletearticle_view, name='deletearticle'),
+
+
     path('api-auth/', include('rest_framework.urls')),
     # path('api/category/', CategoryAPIView.as_view())
 
