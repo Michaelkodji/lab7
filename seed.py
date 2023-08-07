@@ -22,3 +22,6 @@ inserted_pks = seeder.execute()
 #     print('Seed data generated successfully!')
 
 # generate_category_data()
+
+
+# print(100+81*11)

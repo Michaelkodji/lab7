@@ -3,47 +3,66 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import AbstractBaseUser
 
-# class UserManager(AbstractBaseUser):
-#     def __str__(self) -> str:
-#         return super().__str__()
+class UserManager(AbstractBaseUser):
+    def __str__(self) -> str:
+        return super().__str__()
     
-# class Profil(models.Model):
-#     profil_id = models.IntegerField(primary_key=True)
-#     profil_libelle = models.CharField(max_length=255)
+class Profil(models.Model):
+    profil_id = models.AutoField(primary_key=True)
+    profil_libelle = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-# class article(models.Model):
-#     article_id=models.BigIntegerField(primary_key=True)
-#     article_text=models.TextField()
-#     editeur_id=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_edit"), on_delete=models.CASCADE)
-#     category_id=models.ForeignKey("backlab.Category", verbose_name=("article_category"), on_delete=models.CASCADE)
+class article(models.Model):
+    article_id=models.AutoField(primary_key=True)
+    article_text=models.TextField()
+    editeur=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_edit"), on_delete=models.CASCADE)
+    category=models.ForeignKey("backlab.Category", verbose_name=("article_category"), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-# class comment(models.Model):
-#     comment_id= models.IntegerField(primary_key=True)
-#     comment_text=models.TextField
-#     article_id=models.ForeignKey("backlab.article", verbose_name=("article_comment"), on_delete=models.CASCADE)
-#     user_id=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_comment"), on_delete=models.CASCADE)
-
-
-# class observation(models.Model):
-#     observation=models.BigIntegerField(primary_key=True)
-#     observation_text=models.TextField()
-#     article_id=models.ForeignKey("backlab.article", verbose_name=("editor_opinion"), on_delete=models.CASCADE)
-#     editeur_id=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_give_opinion"), on_delete=models.CASCADE)
+class comment(models.Model):
+    comment_id= models.AutoField(primary_key=True)
+    comment_text=models.TextField
+    article_id=models.ForeignKey("backlab.article", verbose_name=("article_comment"), on_delete=models.CASCADE)
+    user=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_comment"), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
-# class voteArtcile(models.Model):
-#     vote_id=models.BigIntegerField(primary_key=True)
-#     vote_decision = models.BooleanField()
-#     article_id = models.ForeignKey("backlab.article", verbose_name=("article_voted"), on_delete=models.CASCADE)
-#     editeur_id=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_voted"), on_delete=models.CASCADE)
+class observation(models.Model):
+    observation_id=models.AutoField(primary_key=True)
+    observation_text=models.TextField()
+    article=models.ForeignKey("backlab.article", verbose_name=("editor_opinion"), on_delete=models.CASCADE)
+    editeur=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_give_opinion"), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class voteArtcile(models.Model):
+    vote_id=models.AutoField(primary_key=True)
+    vote_decision = models.BooleanField()
+    article = models.ForeignKey("backlab.article", verbose_name=("article_voted"), on_delete=models.CASCADE)
+    editeur=models.ForeignKey("backlab.UserManager", verbose_name=("user_who_voted"), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Category(models.Model):
-    category_id=models.BigIntegerField(primary_key=True)
+    category_id=models.AutoField(primary_key=True)
     category_libelle=models.TextField(max_length=255)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.category_libelle
+
+class File(models.Model):
+    file_id=models.AutoField(primary_key=True)
+    file_urls= models.URLField()
+    article = models.ForeignKey("backlab.article", verbose_name=("article_file"), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
 # class test(models.Model):
 #     test_libelle=models.TextField(max_length=255)
