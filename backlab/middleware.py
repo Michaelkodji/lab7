@@ -10,7 +10,10 @@ class AuthRequiredMiddleware:
         if not request.user.is_authenticated:
             # Redirigez l'utilisateur vers la page de connexion
             return redirect(reverse('admin'))  # Assurez-vous d'avoir configuré le nom de l'URL pour la page de connexion.
-        else :
+        
+        if request.path == reverse('admin'):  # Assurez-vous d'avoir configuré le nom de l'URL pour la page de connexion.
             return redirect(reverse('dashboard'))
+        
+
         response = self.get_response(request)
         return response

@@ -20,12 +20,12 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-ballot"></i></span>
-          Utilisateurs
+          Créer un Utilisateur
         </p>
       </header>
       <div class="card-content">          
         <div class="field">
-          <form>
+          <form method="POST" action="{% url 'user' %}">
             {% csrf_token %}
             <div class="grid grid-cols-3 gap-6 lg:grid-cols-2 mb-6">
 
@@ -35,7 +35,7 @@
                     <div class="control expanded">
                       <label class="label">Nom et Prénoms</label>
                       <input type="hidden" name="user_id" value=""/>
-                      <input class="input" type="text" id="name" placeholder="name" value="" required>
+                      <input class="input" type="text" id="name" name="name" placeholder="name" value="" required>
                     </div>
                   </div>
                 </div>
@@ -58,7 +58,10 @@
                   <div class="select">
                     <label class="label">Profil</label>
                     <select class="" name="profil" id="profil" required>
-                      <option selected="true" disabled="true">Profil</option>
+                      <option  disabled="true">Profil</option>
+                      {% for profil in profils %}
+                          <option value= {{ profil.profil_id }}>{{ profil.profil_libelle }}</option>
+                      {% endfor %}
                     </select>
                   </div>
                 </div>
@@ -69,7 +72,7 @@
                   <div class="field addons">
                     <div class="control expanded">
                       <label class="label">Mot de passe</label>
-                      <input class="input" type="text"  id="password" placeholder="mot de passe" name="password" value="{{password}}" readonly>
+                      <input class="input" type="text"  id="password" value="{{ random_password }}" placeholder="mot de passe" name="password" value="{{password}}" readonly>
                     </div>
                   </div>
                 </div>
@@ -78,7 +81,7 @@
             
             <div class="field grouped">
               <div class="control">
-                  <button type="button"  onclick=""  data-target="sample-modal" class="button green">
+                  <button type="submit"  onclick=""  data-target="sample-modal" class="button green">
                   Enregistrer
                   </button>
               </div>
@@ -91,6 +94,75 @@
           </form>
         </div>
       </div>
+
+  </section>
+
+  <section class="section main-section">
+    <div class="card has-table">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          Liste des utilisateurs
+        </p>
+        <a href="#" class="card-header-icon">
+          <span class="icon"><i class="mdi mdi-reload"></i></span>
+        </a>
+      </header>
+      <div class="card-content">
+        <table>
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Nom </th>
+            <th>Adresse mail</th>
+            <th>Profil</th>
+            <th>Statut</th>
+            <th>Dernière connexion</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+
+          {% for dt in user %}
+            <tr>
+              <td class="image-cell">
+                {% comment %} <div class="image">
+                  <img src="https://avatars.dicebear.com/v2/initials/rebecca-bauch.svg" class="rounded-full">
+                </div> {% endcomment %}
+              </td>
+              <td data-label="Name">{{ dt.first_name }}</td>
+              <td data-label="Company">{{ dt.email }}</td>
+              <td data-label="City">{{ dt.profil.profil_libelle}}</td>
+              <td data-label="City">{{ dt.is_active }}</td>
+              <td data-label="City">{{ dt.last_login}}</td>
+            
+              <td class="actions-cell">
+                <div class="buttons right nowrap">
+                  <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
+                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                  </button>
+                  <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+        <div class="table-pagination">
+          <div class="flex items-center justify-between">
+            <div class="buttons">
+              <button type="button" class="button active">1</button>
+              <button type="button" class="button">2</button>
+              <button type="button" class="button">3</button>
+            </div>
+            <small>Page 1 of 3</small>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </section>
 

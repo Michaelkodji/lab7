@@ -20,10 +20,11 @@ router.register('profil', ProfilViewset, basename='profil')
 urlpatterns = [
 
 
-
+    path('', views.login_view, name='login'),
     path('admin/', admin.site.urls , name='admin'),
-    path('dashboard', views.dashboard_view, name='dashbaord'),
+    path('dashboard', views.dashboard_view, name='dashboard'),
     path('profil', views.profil_view, name='profil'),
+    path('login', views.login_view, name='login'),
     path('setting', views.setting_view, name='setting'),
     path('message', views.message_view, name='message'),
     path('logout', views.logout_view, name='logout'),

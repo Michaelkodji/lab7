@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'backlab.middleware.AuthRequiredMiddleware',
+#     'backlab.middleware.AuthRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'lab7.urls'
@@ -143,4 +143,8 @@ STATICFILES_DIRS =[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = "backlab.UserManager"
+AUTH_USER_MODEL = "backlab.UserManager"
+
+LOGIN_URL ='login'
+
+# LOGIN_REDIRECT_URL ='/dashboard'

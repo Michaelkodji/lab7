@@ -1,11 +1,20 @@
 from django.db import models
 
 # Create your models here.
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser,AbstractUser
 
-class UserManager(AbstractBaseUser):
-    def __str__(self) -> str:
-        return super().__str__()
+class UserManager(AbstractUser):
+    email = models.EmailField(unique=True, null=True)
+    first_connexion = models.BooleanField(default=True)
+    profil = models.OneToOneField("backlab.Profil", verbose_name=("user_profil"), on_delete=models.CASCADE, default=1)
+    date_joined=  models.DateTimeField(auto_now=True,blank=True, null=True)
+    username = None 
+    last_name = None
+    is_staff= None
+    is_superuser= None
+    
+    USERNAME_FIELD ='email'
+    REQUIRED_FIELDS = ['first_name' , 'is_active' ,'date_joined' , 'profil']
     
 class Profil(models.Model):
     profil_id = models.AutoField(primary_key=True)
@@ -66,6 +75,13 @@ class File(models.Model):
     
 # class test(models.Model):
 #     test_libelle=models.TextField(max_length=255)
+
+
+
+
+
+
+
 #     def __str__(self):
 #         return self.test_libelle
     

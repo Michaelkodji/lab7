@@ -16,9 +16,9 @@
         <div class="navbar-item dropdown has-divider has-user-avatar">
           <a class="navbar-link">
             <div class="user-avatar">
-              <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
+              <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="{{ user.username }}" class="rounded-full">
             </div>
-            <div class="is-user-name"><span>John Doe</span></div>
+            <div class="is-user-name"><span>{{ user.first_name }}</span></div>
             <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
           </a>
           <div class="navbar-dropdown">
@@ -54,27 +54,32 @@
     </div>
     <div class="menu is-menu-main">
 
-      <p class="menu-label">Tableau de bord</p>
+      <p class="menu-label"><a href="{% url 'dashboard' %}">Tableau de bord</a></p>
       <ul class="menu-list">
-        <li class="--set-active-profile-html">
-            <a href="{% url 'user' %}">
-              <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-              <span class="menu-item-label">Utilisateurs</span>
-            </a>
+        <li class="">
+          <a  class="dropdown">
+            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+            <span class="menu-item-label">Comptes</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li class="--set-active-forms-html"> 
+                <a href="{% url 'user' %}">
+                <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                <span class="menu-item-label">Utilisateur</span>
+                </a>
+            </li>
+          </ul>
         </li>
-        <li class="--set-active-profile-html">
-            <a href="{% url 'category' %}">
-              <span class="icon"><i class="mdi mdi-folder"></i></span>
-              <span class="menu-item-label">Catégories</span>
-            </a>
-        </li>
+        
         <li>
-          <a href="{% url 'listarticle' %}" class="dropdown">
+          <a  class="dropdown">
             <span class="icon"><i class="mdi mdi-view-list"></i></span>
             <span class="menu-item-label">Articles</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
           <ul>
+            
             <li class="--set-active-forms-html">
                 <a href="{% url 'writearticle' %}">
                 <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
@@ -86,6 +91,12 @@
                   <span class="icon"><i class="mdi mdi-table"></i></span>
                   <span class="menu-item-label">Liste des articles rédigés</span>
                 </a>
+            </li>
+            <li class="--set-active-profile-html">
+              <a href="{% url 'category' %}">
+                <span class="icon"><i class="mdi mdi-folder"></i></span>
+                <span class="menu-item-label">Catégories</span>
+              </a>
             </li>
 
             <li class="--set-active-tables-html">
@@ -101,7 +112,7 @@
               <span class="icon"><i class="mdi mdi-comment"></i></span>
               <span class="menu-item-label">Commentaires</span>
             </a>
-          </li>
+        </li>
       </ul>
 
     </div>
