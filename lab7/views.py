@@ -20,21 +20,18 @@ def login_view(request):
             # pprint(username)
             user_info = UserManager.objects.filter(email = username)
 
-            pprint(user_info)
+            # pprint(user_info)
             user = authenticate(request,username=username,password=password)
-            if user.first_connexion == 0 :
-                 return render(request, 'backlab/changepassword.html')
+            # if user.first_connexion == 0 :
+            #      return render(request, 'backlab/changepassword.html')
 
-            else : 
-                if user is  not None:
-                    if user.is_active == 1:
-                        login(request, user)
-                        return redirect('dashboard')
-                    else :
-                        message= 'Compte inactif'
+            # else : 
+            if user is  not None:
+                if user.is_active ==0:
+                    message= 'Compte inactif'
 
-                else:
-                    message="Username or Password is incorrect"
+            else:
+                message="Username or Password is incorrect"
 
     return render(request, 'backlab/login.html', {'message' : message})
 
@@ -52,11 +49,7 @@ def user_view(request):
     profils = Profil.objects.all()
     characters = string.ascii_letters + string.digits 
     random_password = ''.join(secrets.choice(characters) for _ in range(8))
-
     user = UserManager.objects.all()
-    # user = UserManager.objects.select_related('profil').all()
-    # user = UserManager.objects.get(pk=profil_id).select_related('profil')
-
 
     if request.POST : 
         form = request.POST 
@@ -65,7 +58,7 @@ def user_view(request):
             password = make_password(form['password']),
             email = form['email'],
             profil_id = form['profil'],
-            first_connexion =1,
+            first_connexion =0,
             is_active =1
 
         )
