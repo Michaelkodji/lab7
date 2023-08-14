@@ -17,3 +17,6 @@
 
 -Install pytz
 #pip install pytz
+
+-Install django seed
+#pip install django-seed
